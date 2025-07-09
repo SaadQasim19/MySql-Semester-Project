@@ -39,6 +39,30 @@ CREATE TABLE Candidate (
   FOREIGN KEY (party_id) REFERENCES Party(party_id),
   FOREIGN KEY (election_id) REFERENCES Election(election_id)
 );
+CREATE TABLE Vote (
+  vote_id INT PRIMARY KEY,
+  voter_id INT,
+  candidate_id INT,
+  election_id INT,
+  FOREIGN KEY (voter_id) REFERENCES Voter(voter_id),
+  FOREIGN KEY (candidate_id) REFERENCES Candidate(candidate_id),
+  FOREIGN KEY (election_id) REFERENCES Election(election_id)
+);
 
+CREATE TABLE PollingStation (
+  station_id INT PRIMARY KEY,
+  location VARCHAR(255),
+  election_id INT,
+  FOREIGN KEY (election_id) REFERENCES Election(election_id)
+  
+);
+CREATE TABLE Result (
+  result_id INT PRIMARY KEY,
+  candidate_id INT,
+  election_id INT,
+  total_votes INT,
+  FOREIGN KEY (candidate_id) REFERENCES Candidate(candidate_id),
+  FOREIGN KEY (election_id) REFERENCES Election(election_id)
+);
 
 
